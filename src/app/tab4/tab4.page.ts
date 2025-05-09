@@ -13,12 +13,12 @@ export class Tab4Page {
   constructor(private router: Router) {}
   
   goTo(page: string) {
-  this.router.navigate(['/login']);
-}
+    this.router.navigate([`/${page}`]);
+  }
 
-signOut() {
-  this.router.navigate(['/login']);
-}
+  signOut() {
+    this.router.navigate(['/login']);
+  }
 }
 
 
