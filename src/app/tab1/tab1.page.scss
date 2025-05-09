@@ -24,15 +24,15 @@ ion-content::part(background){
 .header{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 200;
-    font-size: 20px;
+    font-size: 13px;
     margin-left: 5%;
     margin-bottom: 0;
 }
 
 .header2{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 500;
-    font-size: 30px;
+    font-weight: 600;
+    font-size: 20px;
     margin-left: 5%;
     margin-top: 0%;
     color: #29ABE1;
@@ -57,39 +57,12 @@ ion-content::part(background){
 }
 
 .mainText1{
-    position: fixed;
-    margin-top: 60lvh;
     color: white;
     font-weight: 600;
-    font-size: 60px;
+    font-size: 50px;
     margin-left: 5%;
-}
-
-.mainText2{
     position: fixed;
-    color: white;
-    font-weight: 600;
-    font-size: 60px;
-    margin-top: 67lvh;
-    margin-left: 5%;
-}
-
-.mainText3{
-    position: fixed;
-    color: white;
-    font-weight: 600;
-    font-size: 60px;
-    margin-top: 74lvh;
-    margin-left: 5%;
-}
-
-.mainText4{
-    position: fixed;
-    color: white;
-    font-weight: 600;
-    font-size: 60px;
-    margin-top: 81lvh;
-    margin-left: 5%;
+    bottom: 5%;
 }
 
 .mainContents {
