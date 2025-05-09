@@ -38,9 +38,23 @@ export const routes: Routes = [
     loadComponent: () => import('./admin/admin.page').then( m => m.AdminPage)
   },
   {
+    path: 'admin/manage-students',
+    loadComponent: () => import('./admin/manage-students/manage-students.page').then( m => m.ManageStudentsPage)
+  },
+  {
+    path: 'admin/manage-teachers',
+    loadComponent: () => import('./admin/manage-teachers/manage-teachers.page').then( m => m.ManageTeachersPage)
+  },
+  {
+    path: 'admin/manage-announcements',
+    loadComponent: () => import('./admin/manage-announcements/manage-announcements.page').then( m => m.ManageAnnouncementsPage)
+  },
+  {
+    path: 'admin/manage-activities',
+    loadComponent: () => import('./admin/manage-activities/manage-activities.page').then( m => m.ManageActivitiesPage)
+  },
+  {
     path: 'signout',
     loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
-
-  
 ];

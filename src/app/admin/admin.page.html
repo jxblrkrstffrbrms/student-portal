@@ -1,13 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>admin</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Admin Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">admin</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card class="dashboard-card" (click)="goToManageStudents()">
+    <ion-card-content class="ion-text-center">
+      <ion-icon name="people" class="dashboard-icon"></ion-icon>
+      <h2>Manage Students</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="dashboard-card" (click)="goToManageTeachers()">
+    <ion-card-content class="ion-text-center">
+      <ion-icon name="school" class="dashboard-icon"></ion-icon>
+      <h2>Manage Teachers</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="dashboard-card" (click)="goToManageAnnouncements()">
+    <ion-card-content class="ion-text-center">
+      <ion-icon name="megaphone" class="dashboard-icon"></ion-icon>
+      <h2>Manage Announcements</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="danger" (click)="logout()" class="logout-button">
+    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+    Logout
+  </ion-button>
 </ion-content>

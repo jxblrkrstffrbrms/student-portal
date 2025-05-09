@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manage Announcements</ion-title>
+    <ion-button slot="end" fill="clear" (click)="goBack()">
+      Back
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-searchbar
+    [(ngModel)]="searchText"
+    placeholder="Search announcements"
+    animated
+  ></ion-searchbar>
+
+  <ion-item>
+    <ion-label>Sort by</ion-label>
+    <ion-select [(ngModel)]="sortBy" (ionChange)="loadAnnouncements()">
+      <ion-select-option value="date">Date</ion-select-option>
+      <ion-select-option value="title">Title</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let announcement of filterAnnouncements()">
+      <ion-label>
+        <h2>{{ announcement.title }}</h2>
+        <p>{{ announcement.date | date:'medium' }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="openViewModal(announcement)">
+          <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="openEditModal(announcement)">
+          <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="confirmDelete(announcement)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCreateModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content> 

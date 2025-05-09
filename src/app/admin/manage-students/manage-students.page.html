@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manage Students</ion-title>
+    <ion-button slot="end" fill="clear" (click)="goBack()">
+      Back
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Student Management</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Add New Student</ion-label>
+          <ion-button slot="end" fill="clear">Add</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>View All Students</ion-label>
+          <ion-button slot="end" fill="clear">View</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Edit Student Information</ion-label>
+          <ion-button slot="end" fill="clear">Edit</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Remove Student</ion-label>
+          <ion-button slot="end" fill="clear" color="danger">Remove</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content> 

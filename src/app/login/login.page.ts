@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { globeOutline, logoFacebook, helpCircleOutline, peopleOutline } from 'ionicons/icons';
@@ -6,23 +6,8 @@ import { addIcons } from 'ionicons';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonFabList, IonIcon, IonCard, 
   IonCardHeader, IonCardContent, IonCardTitle, IonItem, IonInput, IonButton, IonCol, IonGrid, IonRow, AlertController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDFAPlxgjRhqGi4LlUTYtGvrgQu0Eb7MKs",
-  authDomain: "pshs-student-portal.firebaseapp.com",
-  projectId: "pshs-student-portal",
-  storageBucket: "pshs-student-portal.firebasestorage.app",
-  messagingSenderId: "528701191387",
-  appId: "1:528701191387:web:0abd467425cd2f6e5508fe",
-  measurementId: "G-3XTEWFWGH4"
-};
-
-// Initializing Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -33,49 +18,40 @@ const analytics = getAnalytics(app);
     IonFabList, IonIcon, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonItem, IonInput,
     IonButton, IonCol, IonGrid, IonRow]
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   email: string = '';
   password: string = '';
+  isAdminLogin: boolean = false;
 
   constructor(
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private firebaseService: FirebaseService
   ) {
     addIcons({helpCircleOutline, logoFacebook, globeOutline, peopleOutline});
   }
 
-  ngOnInit() {
+  async login() {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        this.firebaseService.auth,
+        this.email,
+        this.password
+      );
+      
+      if (this.isAdminLogin) {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/tabs/tab1']);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed. Please check your credentials.');
+    }
   }
 
-  async submitForm() {
-    if (!this.email || !this.password) {
-      await this.showAlert('Error', 'Please enter both email and password');
-      return;
-    }
-
-    try {
-      const auth = getAuth();
-      const userCredential = await signInWithEmailAndPassword(auth, this.email, this.password);
-      console.log('User logged in successfully:', userCredential.user);
-      this.router.navigate(['tabs']);
-    } catch (error: any) {
-      let errorMessage = 'An error occurred during login';
-      
-      switch (error.code) {
-        case 'auth/invalid-email':
-          errorMessage = 'Invalid email format';
-          break;
-        case 'auth/user-not-found':
-          errorMessage = 'No user found with this email';
-          break;
-        case 'auth/wrong-password':
-          errorMessage = 'Incorrect password';
-          break;
-      }
-      
-      await this.showAlert('Login Failed', errorMessage);
-      console.error('Login error:', error);
-    }
+  goToAdmin() {
+    this.isAdminLogin = true;
   }
 
   async showAlert(header: string, message: string) {

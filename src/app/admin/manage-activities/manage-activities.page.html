@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manage Activities</ion-title>
+    <ion-button slot="end" fill="clear" (click)="goBack()">
+      Back
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Activity Management</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Create New Activity</ion-label>
+          <ion-button slot="end" fill="clear">Create</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>View All Activities</ion-label>
+          <ion-button slot="end" fill="clear">View</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Edit Activity</ion-label>
+          <ion-button slot="end" fill="clear">Edit</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Delete Activity</ion-label>
+          <ion-button slot="end" fill="clear" color="danger">Delete</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content> 
