@@ -15,10 +15,6 @@ export class Tab4Page {
   goTo(page: string) {
     this.router.navigate([`/${page}`]);
   }
-
-  signOut() {
-    this.router.navigate(['/login']);
-  }
 }
 
 
