@@ -1,0 +1,53 @@
+<ion-content [fullscreen]="true" style="background-image:url('../../assets/bg.jpg');">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button class="mainFab" >
+      <ion-icon name="help-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button class="secondaryFab" href="https://web.facebook.com/PSHSCALABARZONRC/">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="secondaryFab" href="https://cbzrc.pshs.edu.ph/?fbclid=IwY2xjawIY6PNleHRuA2FlbQIxMAABHSSsm9ovQWq6pe0JQ18TiuW3n8H_DNElzTx3tJ7na-geQ8e7JJoHx5ZDrQ_aem_eVYmxrAoAy13korurs28Cw">
+        <ion-icon name="globe-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+    <ion-fab-button class="mainFab" >
+      <ion-icon name="people-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    
+  <ion-card>
+        <img src="../../assets/pshslogo.png" class="logo">
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-input 
+          label="Email" 
+          labelPlacement="floating" 
+          placeholder="Enter your email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input 
+          label="Password" 
+          labelPlacement="floating" 
+          placeholder="Enter your password" 
+          type="password"
+          [(ngModel)]="password"
+          name="password"></ion-input>
+      </ion-item>
+      <ion-grid>
+      <ion-row>
+      
+        <ion-button shape="round" fill="outline" color="light" (click)="submitForm()">Sign In</ion-button>
+      
+    </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

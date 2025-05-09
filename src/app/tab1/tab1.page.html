@@ -1,0 +1,111 @@
+<ion-content [fullscreen]="true">
+  
+  <ion-fab slot="fixed" vertical="top" horizontal="end">
+    <ion-fab-button class="mainFab" >
+      <ion-icon name="help-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button class="secondaryFab" href="https://web.facebook.com/PSHSCALABARZONRC/">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button class="secondaryFab" href="https://cbzrc.pshs.edu.ph/?fbclid=IwY2xjawIY6PNleHRuA2FlbQIxMAABHSSsm9ovQWq6pe0JQ18TiuW3n8H_DNElzTx3tJ7na-geQ8e7JJoHx5ZDrQ_aem_eVYmxrAoAy13korurs28Cw">
+        <ion-icon name="globe-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+<div class="mainBody">
+  <!--<video id="videoBG" autoplay muted loop>
+    <source src="./assets/pisaydrone.mp4" type="video/mp4">
+  </video>-->
+      <img src="../../assets/pshslogo.png" class="logo">
+      <h2 class="mainText1">integrity.</h2>
+      <h2 class="mainText2">excellence.</h2>
+      <h2 class="mainText3">service to</h2>
+      <h2 class="mainText4">nation.</h2>
+</div>
+  
+    <ion-card class="mainContents">
+      <ion-grid>
+        
+        <h1 class="header3">____________</h1>
+
+        <h1 class="header">School</h1>
+        <h1 class="header2">ANNOUNCEMENTS</h1>
+
+        <h1 class="header">My</h1>
+        <h1 class="header2">ACTIVITIES</h1>
+
+        <!-- Activities List -->
+        <ion-card class="activities-card">
+            <ion-card-content>
+                <ion-list>
+                    <ion-item-sliding *ngFor="let activity of activities">
+                        <ion-item [class.completed]="activity.isCompleted">
+                            <ion-label>
+                                <h2>{{ activity.title }}</h2>
+                                <p>{{ activity.description }}</p>
+                                <p class="due-date">
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                    Due: {{ activity.datetime | date:'medium' }}
+                                </p>
+                            </ion-label>
+                            <ion-checkbox 
+                                slot="end" 
+                                [(ngModel)]="activity.isCompleted"
+                                disabled>
+                            </ion-checkbox>
+                        </ion-item>
+                    </ion-item-sliding>
+                </ion-list>
+                <div class="empty-state" *ngIf="activities.length === 0">
+                    <ion-icon name="list-outline"></ion-icon>
+                    <p>No activities yet</p>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <h1 class="header">Our</h1>
+        <h1 class="header2">MISSION</h1>
+        <ion-row>
+            <ion-col size="12" size-md="6">
+                <ion-card class="info-card">
+                    <ion-card-content>
+                        <p>Advancing premier high school STEM education for the people.</p>
+                    </ion-card-content>
+                </ion-card>
+                  <h1 class="header">Our</h1>
+                  <h1 class="header2">VISION</h1>
+                <ion-card class="info-card">
+                  
+                  <ion-card-content>
+                      <p>We are the leading science high school in the Asia-Pacific region preparing our scholars to become globally competitive Filipino scientists equipped with- 21st century skills and imbued with the core values of Integrity, Excellence, and Service to nation.</p>
+                  </ion-card-content>
+              </ion-card>
+              <h1 class="header">Our</h1>
+              <h1 class="header2">CORE VALUES</h1>
+              <ion-card class="info-card">
+                
+                <ion-card-content>
+                    <ion-list>
+                        <ion-item>
+                            <ion-icon name="shield-checkmark-outline" slot="start"></ion-icon>
+                            <ion-label>Integrity</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-icon name="trophy-outline" slot="start"></ion-icon>
+                            <ion-label>Excellence</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-icon name="people-outline" slot="start"></ion-icon>
+                            <ion-label>Service to Nation</ion-label>
+                        </ion-item>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card>
+
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+       
+</ion-content>

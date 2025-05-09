@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true">
+    
+    <h1 class="header">My Activities</h1>
+
+    <!-- Add Activity Form -->
+    <ion-card class="activity-form">
+        <ion-card-content>
+            <ion-item>
+                <ion-input 
+                    [(ngModel)]="newActivity.title" 
+                    label="Activity Title" 
+                    labelPlacement="floating" 
+                    placeholder="Enter activity title">
+                </ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-textarea 
+                    [(ngModel)]="newActivity.description" 
+                    label="Description" 
+                    labelPlacement="floating" 
+                    placeholder="Enter activity description">
+                </ion-textarea>
+            </ion-item>
+
+            <ion-item>
+                <ion-datetime 
+                    [(ngModel)]="newActivity.datetime" >
+                </ion-datetime>
+            </ion-item>
+
+            <ion-button expand="block" (click)="addActivity()">Add Activity</ion-button>
+        </ion-card-content>
+    </ion-card>
+
+    <!-- Activities List -->
+    <h1 class="header2">To-Do List</h1>
+    <ion-list>
+        <ion-item-sliding *ngFor="let activity of activities">
+            <ion-item [class.completed]="activity.isCompleted">
+                <ion-label>
+                    <h2>{{ activity.title }}</h2>
+                    <p>{{ activity.description }}</p>
+                    <p>Due: {{ activity.datetime | date:'medium' }}</p>
+                </ion-label>
+                <ion-checkbox 
+                    slot="end" 
+                    [(ngModel)]="activity.isCompleted"
+                    (ionChange)="toggleComplete(activity)">
+                </ion-checkbox>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="danger" (click)="deleteActivity(activity)">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,216 @@
+.mainFab::part(native){
+    background-color: #29ABE1;
+    position: fixed;
+    box-shadow: 1px 1px 10px black;
+}
+
+.secondaryFab::part(native){
+    color: #29ABE1;
+}
+
+//#videoBG{
+   // position: fixed;
+   // height: 100lvh;
+   // z-index: -1;
+//}
+
+ion-content::part(background){
+    background-image: url("../../assets/bg.png");
+    background-position: 30% 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 5%;
+    margin-bottom: 0;
+}
+
+.header2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    margin-left: 5%;
+    margin-top: 0%;
+    color: #29ABE1;
+}
+.header3{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 1000;
+    font-size: 30px;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #29ABE1;
+}
+
+.logo{
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    width: 50%;
+}
+
+.mainText1{
+    position: fixed;
+    margin-top: 60lvh;
+    color: white;
+    font-weight: 600;
+    font-size: 60px;
+    margin-left: 5%;
+}
+
+.mainText2{
+    position: fixed;
+    color: white;
+    font-weight: 600;
+    font-size: 60px;
+    margin-top: 67lvh;
+    margin-left: 5%;
+}
+
+.mainText3{
+    position: fixed;
+    color: white;
+    font-weight: 600;
+    font-size: 60px;
+    margin-top: 74lvh;
+    margin-left: 5%;
+}
+
+.mainText4{
+    position: fixed;
+    color: white;
+    font-weight: 600;
+    font-size: 60px;
+    margin-top: 81lvh;
+    margin-left: 5%;
+}
+
+.mainContents {
+    height: 125lvh;
+    width: 100%;
+    margin-top: 100lvh;
+    margin-left: 0;
+    margin-bottom: -10lvh;
+    border-radius: 20px;
+}
+
+ion-card-header {
+    background-color: #29ABE1;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px gray;
+}
+
+ion-card-title {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+ion-card-content{
+    padding: 15px;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    color: black;
+}
+
+ion-list {
+    background: transparent;
+}
+
+ion-item {
+    --background: transparent;
+    margin-bottom: 10px;
+}
+
+.info-card{
+    border-radius: 20px;
+    margin-top: 0px;
+}
+
+.activities-card {
+    margin: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.activities-card ion-list {
+    background: transparent;
+    padding: 0;
+}
+
+.activities-card ion-item {
+    --background: white;
+    margin: 8px 0;
+    border-radius: 12px;
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+}
+
+.activities-card ion-item.completed {
+    --background: #f8f8f8;
+    opacity: 0.8;
+}
+
+.activities-card ion-item.completed h2 {
+    text-decoration: line-through;
+    color: #666;
+}
+
+.activities-card ion-item h2 {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.activities-card ion-item p {
+    color: #666;
+    margin: 4px 0;
+    font-size: 0.9em;
+}
+
+.activities-card .due-date {
+    display: flex;
+    align-items: center;
+    color: #29ABE1;
+    font-size: 0.85em;
+    margin-top: 8px;
+
+    ion-icon {
+        margin-right: 4px;
+    }
+}
+
+.activities-card ion-checkbox {
+    --checkbox-background-checked: #29ABE1;
+    --border-color-checked: #29ABE1;
+    --checkmark-color: white;
+}
+
+.activities-card .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    color: #666;
+
+    ion-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+        color: #29ABE1;
+    }
+
+    p {
+        font-size: 1em;
+        margin: 0;
+    }
+}

@@ -1,0 +1,61 @@
+.header{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-left: 5%;
+}
+
+.profile-card {
+    height: 125px;
+    margin: 16px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    .profile-name {
+      font-weight: bold;
+      font-size: 1.5em;
+      margin-bottom: 0;
+    }
+    .profile-details {
+      font-size: 0.95em;
+      margin-top: 5px;
+      color: #444;
+    }
+    ion-avatar {
+      margin-top: 12px;
+      width: 100px;
+      height: 100px;
+      margin-right: 12px;
+    }
+  }
+  
+  .info-header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-left: 5%;
+  }
+  
+  .info-list {
+    margin: 0px 25px;
+    ion-item {
+      margin-bottom: 8px;
+      padding: 5px;
+      border-radius: 12px;
+      background: #f5f5f5;
+      font-weight: 500;
+      font-size: 1em;
+      --padding-start: 16px;
+      --inner-padding-end: 16px;
+      --background: #f5f5f5;
+      --ripple-color: #e0e0e0;
+    }
+  }
+  
+  .signout-container {
+    margin: 32px 16px 0 16px;
+    ion-button {
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1em;
+    }
+  }

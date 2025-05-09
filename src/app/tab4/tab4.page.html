@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true">
+    <h1 class="header">My Profile</h1>
+
+    <!-- Profile Card (Top) -->
+    <ion-card class="profile-card">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img src="assets/id.jpg" alt="Profile" />
+        </ion-avatar>
+        <ion-label>
+          <h2 class="profile-name">RAMOS</h2>
+          <p class="profile-details">Jax Blaire Kristoffer B.</p>
+          <p class="profile-details">24-03475</p>
+          <p class="profile-details">Grade 9 - Krypton</p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <!-- More Information Section -->
+    <h2 class="info-header">More Information</h2>
+    <ion-list class="info-list">
+      <ion-item button detail lines="none" (click)="goTo('class-schedules')">Class Schedules</ion-item>
+      <ion-item button detail lines="none" (click)="goTo('academic-calendar')">Academic Calendar</ion-item>
+      <ion-item button detail lines="none" (click)="goTo('consultation-schedules')">Consultation Schedules</ion-item>
+      <ion-item button detail lines="none" (click)="goTo('announcements')">Announcements</ion-item>
+      <ion-item button detail lines="none" (click)="goTo('contact-us')">Contact Us</ion-item>
+      <ion-item button detail lines="none" (click)="goTo('report')">Report</ion-item>
+    </ion-list>
+
+    <!-- Sign Out Button -->
+    <div class="signout-container">
+      <ion-button expand="block" color="danger" (click)="signOut()">Sign Out</ion-button>
+    </div>
+</ion-content>

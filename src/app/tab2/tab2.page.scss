@@ -1,0 +1,112 @@
+@import url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+
+
+.header{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-left: 5%;
+}
+
+.header2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-left: 5%;
+}
+
+.calendarholder{
+    width: 90%;
+    border-radius: 25px;
+    position: fixed;
+    margin-top: 22lvh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 3px 3px 10px gray;
+}
+
+ion-datetime{
+    background-color: white;
+    padding: 2%;
+    border-radius: 25px;
+    margin-left: 3%;
+}
+
+.calendarholder {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+ion-card {
+    margin: 10px;
+}
+
+ion-badge {
+    padding: 8px;
+    border-radius: 16px;
+}
+
+
+.activity-form {
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-header {
+    background-color: #29ABE1;
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+ion-card-title {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+ion-list {
+    margin: 20px;
+}
+
+ion-item {
+    --background: white;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+ion-item.completed {
+    --background: #f0f0f0;
+    opacity: 0.7;
+}
+
+ion-item.completed h2 {
+    text-decoration: line-through;
+    color: #666;
+}
+
+ion-item h2 {
+    font-weight: bold;
+    color: #333;
+}
+
+ion-item p {
+    color: #666;
+    margin: 5px 0;
+}
+
+ion-checkbox {
+    --checkbox-background-checked: #29ABE1;
+    --border-color-checked: #29ABE1;
+}
+
+ion-item-option {
+    --background: #ff4961;
+}
+
+ion-datetime {
+    width: 100%;
+    padding: 10px;
+}

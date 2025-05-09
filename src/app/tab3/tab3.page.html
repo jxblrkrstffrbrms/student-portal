@@ -1,0 +1,78 @@
+<ion-content [fullscreen]="true">
+    <h1 class="header">My GWA Calculator</h1>
+
+    <ion-card class="main-card">
+        <ion-card-content>
+            <ion-item>
+                <ion-input 
+                    [(ngModel)]="newSubject.name" 
+                    label="Subject Name" 
+                    labelPlacement="floating" 
+                    placeholder="Enter subject name">
+                </ion-input>
+            </ion-item>
+            
+            <ion-item>
+                <ion-label>Grade</ion-label>
+                <ion-select 
+                    [(ngModel)]="newSubject.grade" 
+                    placeholder="Select grade">
+                    <ion-select-option value="1.00">1.00</ion-select-option>
+                    <ion-select-option value="1.25">1.25</ion-select-option>
+                    <ion-select-option value="1.50">1.50</ion-select-option>
+                    <ion-select-option value="1.75">1.75</ion-select-option>
+                    <ion-select-option value="2.00">2.00</ion-select-option>
+                    <ion-select-option value="2.25">2.25</ion-select-option>
+                    <ion-select-option value="2.50">2.50</ion-select-option>
+                    <ion-select-option value="2.75">2.75</ion-select-option>
+                    <ion-select-option value="3.00">3.00</ion-select-option>
+                    <ion-select-option value="4.00">4.00</ion-select-option>
+                    <ion-select-option value="5.00">5.00</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-input 
+                    [(ngModel)]="newSubject.units" 
+                    label="Units" 
+                    labelPlacement="floating" 
+                    type="number"
+                    min="1"
+                    max="6"
+                    placeholder="Enter number of units">
+                </ion-input>
+            </ion-item>
+
+            <ion-button expand="block" (click)="addSubject()">Add Subject</ion-button>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let subject of subjects">
+            <ion-card class="cardnum2">
+            <ion-item>
+                <ion-label>
+                    <h2 class="subjname">{{ subject.name }}</h2>
+                    <p>Grade: {{ subject.grade }} | Units: {{ subject.units }}</p>
+                </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="danger" (click)="deleteSubject(subject)">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-card>
+        </ion-item-sliding>
+    </ion-list>
+
+    <ion-card *ngIf="subjects.length > 0" class="cardnum3">
+        <ion-card-header>
+            <ion-card-title>GWA Summary</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p>Total Units: {{ totalUnits }}</p>
+            <p>Total Grade Points: {{ totalGradePoints }}</p>
+            <h2>GWA: {{ gwa }}</h2>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
