@@ -32,26 +32,52 @@ export class LoginPage {
   }
 
   async login() {
+    if (!this.email || !this.password) {
+      await this.showAlert('Error', 'Please enter both email and password');
+      return;
+    }
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         this.firebaseService.auth,
         this.email,
         this.password
       );
-      
+
       if (this.isAdminLogin) {
-        this.router.navigate(['/admin']);
+        // Check if the user is an admin
+        if (userCredential.user.email === 'admin@cbzrc.pshs.edu.ph') {
+          this.router.navigate(['/admin']);
+        } else {
+          await this.showAlert('Access Denied', 'You do not have admin privileges');
+          await this.firebaseService.auth.signOut();
+        }
       } else {
         this.router.navigate(['/tabs/tab1']);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login error:', error);
-      alert('Login failed. Please check your credentials.');
+      let errorMessage = 'An error occurred during login';
+      
+      switch (error.code) {
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email format';
+          break;
+        case 'auth/user-not-found':
+          errorMessage = 'No user found with this email';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'Incorrect password';
+          break;
+      }
+      
+      await this.showAlert('Login Failed', errorMessage);
     }
   }
 
   goToAdmin() {
     this.isAdminLogin = true;
+    this.showAlert('Admin Login', 'Please enter admin credentials');
   }
 
   async showAlert(header: string, message: string) {

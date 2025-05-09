@@ -37,11 +37,15 @@ export class AdminPage implements OnInit {
     this.router.navigate(['/admin/manage-announcements']);
   }
 
-  async logout() {
+  goTo(page: string) {
+    this.router.navigate([`/${page}`]);
+  }
+  
+  async signout() {
     try {
       const auth = getAuth();
       await signOut(auth);
-      this.router.navigate(['/login']);
+      this.router.navigate(['../login']);
     } catch (error) {
       console.error('Error signing out:', error);
     }
