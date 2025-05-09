@@ -8,7 +8,8 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
-  },  {
+  },
+  {
     path: 'class-schedule',
     loadComponent: () => import('./class-schedule/class-schedule.page').then( m => m.ClassSchedulePage)
   },
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'report',
     loadComponent: () => import('./report/report.page').then( m => m.ReportPage)
+  },
+  {
+    path: 'signout',
+    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
 
   
