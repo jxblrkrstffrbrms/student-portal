@@ -24,7 +24,7 @@ ion-content::part(background){
 .header{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 200;
-    font-size: 13px;
+    font-size: 20px;
     margin-left: 5%;
     margin-bottom: 0;
 }
@@ -32,7 +32,7 @@ ion-content::part(background){
 .header2{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 30px;
     margin-left: 5%;
     margin-top: 0%;
     color: #29ABE1;
@@ -63,6 +63,7 @@ ion-content::part(background){
     margin-left: 5%;
     position: fixed;
     bottom: 5%;
+    line-height: 1;
 }
 
 .mainContents {
