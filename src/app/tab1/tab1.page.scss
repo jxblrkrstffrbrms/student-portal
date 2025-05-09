@@ -8,11 +8,11 @@
     color: #29ABE1;
 }
 
-//#videoBG{
-   // position: fixed;
-   // height: 100lvh;
-   // z-index: -1;
-//}
+#videoBG{
+   position: fixed;
+   height: 100lvh;
+   z-index: -1;
+}
 
 ion-content::part(background){
     background-image: url("../../assets/bg.png");
@@ -23,6 +23,7 @@ ion-content::part(background){
 
 .header{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 200;
     font-size: 20px;
     margin-left: 5%;
     margin-bottom: 0;
@@ -30,7 +31,7 @@ ion-content::part(background){
 
 .header2{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 30px;
     margin-left: 5%;
     margin-top: 0%;
@@ -56,7 +57,6 @@ ion-content::part(background){
 }
 
 .mainText1{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: fixed;
     margin-top: 60lvh;
     color: white;
@@ -66,7 +66,6 @@ ion-content::part(background){
 }
 
 .mainText2{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: fixed;
     color: white;
     font-weight: 600;
@@ -76,7 +75,6 @@ ion-content::part(background){
 }
 
 .mainText3{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: fixed;
     color: white;
     font-weight: 600;
@@ -86,7 +84,6 @@ ion-content::part(background){
 }
 
 .mainText4{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: fixed;
     color: white;
     font-weight: 600;
@@ -96,6 +93,7 @@ ion-content::part(background){
 }
 
 .mainContents {
+    z-index: 10;
     height: auto;
     width: 100%;
     margin-top: 100lvh;
@@ -118,11 +116,13 @@ ion-card-title {
 }
 
 ion-card-content{
+    
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 15px;
     padding-top: 10%;
     padding-bottom: 10%;
     color: black;
+    text-align: center;
 }
 
 ion-list {
