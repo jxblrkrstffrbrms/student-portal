@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, 
     IonCardHeader, IonCardTitle, IonList, IonItem, IonLabel, IonButton, IonIcon,
-    IonModal, IonInput, IonTextarea, IonButtons, IonSearchbar, IonSelect, IonSelectOption,
+    IonModal, IonInput, IonFab, IonFabButton, IonTextarea, IonButtons, IonSearchbar, IonSelect, IonSelectOption,
     ModalController, AlertController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { ref, push, set, remove, onValue, query, orderByChild } from 'firebase/database';
@@ -24,7 +24,7 @@ interface Announcement {
   standalone: true,
   imports: [CommonModule, FormsModule, IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent, 
     IonCardHeader, IonCardTitle, IonList, IonItem, IonLabel, IonButton, IonIcon, IonModal, IonInput, IonTextarea, 
-    IonButtons, IonSearchbar, IonSelect, IonSelectOption, AnnouncementModalComponent]
+    IonButtons, IonSearchbar, IonFab, IonFabButton, IonSelect, IonSelectOption, AnnouncementModalComponent]
 })
 export class ManageAnnouncementsPage implements OnInit {
   announcements: Announcement[] = [];
