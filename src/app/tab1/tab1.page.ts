@@ -1,19 +1,17 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonFab, IonFabButton, IonFabList, 
-  IonIcon, IonGrid, IonCol, IonRow, IonDatetime, IonDatetimeButton, IonItemSliding, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonCheckbox } from '@ionic/angular/standalone';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
-import { globeOutline, logoFacebook, helpCircleOutline, bulbOutline, eyeOutline, 
-  starOutline, trophyOutline, shieldCheckmarkOutline, peopleOutline, 
-  sparklesOutline, megaphoneOutline, notificationsOutline, add, trash, calendarOutline, listOutline } from 'ionicons/icons';
-import { addIcons } from 'ionicons';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Announcement {
-    title: string;
-    date: string;
-    description: string;
-}
+import { globeOutline, logoFacebook, helpCircleOutline, peopleOutline, calendarOutline, listOutline, 
+  shieldCheckmarkOutline, trophyOutline, trash, add, notificationsOutline, megaphoneOutline, 
+  bulbOutline, eyeOutline, starOutline, sparklesOutline } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { IonHeader, IonToolbar, IonDatetime, IonDatetimeButton, IonTitle, IonContent, IonFab, 
+  IonFabButton, IonFabList, IonIcon, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonItemOptions, IonItemOption,
+  IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonItemSliding, IonCheckbox } from '@ionic/angular/standalone';
+import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { database } from '../firebase.config';
+import { ref, onValue, remove, update, query, orderByChild, equalTo } from 'firebase/database';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 interface Activity {
     id: string;
@@ -21,6 +19,13 @@ interface Activity {
     description: string;
     datetime: string;
     isCompleted: boolean;
+    userId: string;
+}
+
+interface Announcement {
+    title: string;
+    date: string;
+    description: string;
 }
 
 @Component({
@@ -29,24 +34,89 @@ interface Activity {
   styleUrls: ['tab1.page.scss'],
   standalone: true,
   imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonDatetime, IonDatetimeButton, IonTitle, IonContent, IonFab, IonFabButton, 
-    IonFabList, IonIcon, ExploreContainerComponent, IonGrid, IonCol, IonRow, 
+    IonFabList, IonIcon, ExploreContainerComponent, IonGrid, IonCol, IonRow, IonItemOptions, IonItemOption,
     IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonItemSliding, IonCheckbox],
 })
-export class Tab1Page implements OnInit {
+export class Tab1Page implements OnInit, OnDestroy {
   isScrolled = false;
   cardsVisible = false;
   activities: Activity[] = [];
+  private activitiesRef = ref(database, 'activities');
+  private currentUserId: string | null = null;
 
-  constructor() {
-    addIcons({helpCircleOutline,logoFacebook,globeOutline,calendarOutline,listOutline,shieldCheckmarkOutline,trophyOutline,peopleOutline,trash,add,notificationsOutline,megaphoneOutline,bulbOutline,eyeOutline,starOutline,sparklesOutline});
+  constructor(private cdr: ChangeDetectorRef) {
+    addIcons({helpCircleOutline, logoFacebook, globeOutline, calendarOutline, listOutline, shieldCheckmarkOutline, 
+      trophyOutline, peopleOutline, trash, add, notificationsOutline, megaphoneOutline, bulbOutline, 
+      eyeOutline, starOutline, sparklesOutline});
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.currentUserId = user.uid;
+        this.loadUserActivities();
+      } else {
+        this.currentUserId = null;
+        this.activities = [];
+      }
+    });
   }
 
-  ngOnInit() {
-    // Load activities from localStorage
-    const savedActivities = localStorage.getItem('activities');
-    if (savedActivities) {
-      this.activities = JSON.parse(savedActivities);
+  ngOnInit() {}
+
+  ngOnDestroy() {}
+
+  trackByFn(index: number, item: Activity): string {
+    return item.id;
+  }
+
+  private loadUserActivities() {
+    if (!this.currentUserId) return;
+
+    const userActivitiesQuery = query(
+      this.activitiesRef,
+      orderByChild('userId'),
+      equalTo(this.currentUserId)
+    );
+
+    onValue(userActivitiesQuery, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        this.activities = Object.values(data);
+      } else {
+        this.activities = [];
+      }
+      this.cdr.detectChanges();
+    });
+  }
+
+  deleteActivity(activity: Activity) {
+    if (!this.currentUserId || activity.userId !== this.currentUserId) {
+      return;
     }
+
+    const activityRef = ref(database, `activities/${activity.id}`);
+    remove(activityRef)
+      .then(() => {
+        this.cdr.detectChanges();
+      })
+      .catch((error) => {
+        console.error('Error deleting activity:', error);
+      });
+  }
+
+  toggleComplete(activity: Activity) {
+    if (!this.currentUserId || activity.userId !== this.currentUserId) {
+      return;
+    }
+
+    const activityRef = ref(database, `activities/${activity.id}`);
+    update(activityRef, {
+      isCompleted: !activity.isCompleted
+    }).then(() => {
+      this.cdr.detectChanges();
+    }).catch((error) => {
+      console.error('Error updating activity:', error);
+    });
   }
 
   @HostListener('window:scroll', ['$event'])

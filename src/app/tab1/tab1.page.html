@@ -14,9 +14,9 @@
     </ion-fab-list>
   </ion-fab>
 <div class="mainBody">
-  <video id="videoBG" autoplay muted loop>
+  <!--<video id="videoBG" autoplay muted loop>
     <source src="./assets/videobackground.mp4" type="video/mp4">
-  </video>
+  </video>-->
       <img src="../../assets/pshslogo.png" class="logo">
       <div class="textContainer">
       <h2 class="mainText1">integrity.
@@ -40,24 +40,26 @@
         <ion-card class="activities-card">
             <ion-card-content>
                 <ion-list>
-                    <ion-item-sliding *ngFor="let activity of activities">
-                        <ion-item [class.completed]="activity.isCompleted">
-                            <ion-label>
-                                <h2>{{ activity.title }}</h2>
-                                <p>{{ activity.description }}</p>
-                                <p class="due-date">
-                                    <ion-icon name="calendar-outline"></ion-icon>
-                                    Due: {{ activity.datetime | date:'medium' }}
-                                </p>
-                            </ion-label>
-                            <ion-checkbox 
-                                slot="end" 
-                                [(ngModel)]="activity.isCompleted"
-                                disabled>
-                            </ion-checkbox>
-                        </ion-item>
-                    </ion-item-sliding>
-                </ion-list>
+        <ion-item-sliding *ngFor="let activity of activities; trackBy: trackByFn">
+            <ion-item [class.completed]="activity.isCompleted">
+                <ion-label>
+                    <h2>{{ activity.title }}</h2>
+                    <p>{{ activity.description }}</p>
+                    <p>Due: {{ activity.datetime | date:'medium' }}</p>
+                </ion-label>
+                <ion-checkbox 
+                    slot="end" 
+                    [(ngModel)]="activity.isCompleted"
+                    (ionChange)="toggleComplete(activity)">
+                </ion-checkbox>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="danger" (click)="deleteActivity(activity)">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
                 <div class="empty-state" *ngIf="activities.length === 0">
                     <ion-icon name="list-outline"></ion-icon>
                     <p>No activities yet</p>
