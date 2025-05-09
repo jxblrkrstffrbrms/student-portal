@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
 .header{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Lexend", sans-serif;
     font-weight: 600;
     font-size: 30px;
     margin-left: 5%;
@@ -11,11 +13,13 @@
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     .profile-name {
+      font-family: "Lexend", sans-serif;
       font-weight: bold;
       font-size: 1.5em;
       margin-bottom: 0;
     }
     .profile-details {
+      font-family: "Lexend", sans-serif;
       font-size: 0.95em;
       margin-top: 5px;
       color: #444;
@@ -29,7 +33,7 @@
   }
   
   .info-header {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Lexend", sans-serif;
     font-weight: 600;
     font-size: 30px;
     margin-left: 5%;
