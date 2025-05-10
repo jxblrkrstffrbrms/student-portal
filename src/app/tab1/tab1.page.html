@@ -33,7 +33,17 @@
         <h1 class="header">School</h1>
         <h1 class="header2">Announcements</h1>
 
-        
+        <ion-list>
+          <ion-card *ngFor="let announcement of announcements" class="announcement-card">
+            <ion-card-header>
+              <ion-card-title>{{ announcement.title }}</ion-card-title>
+              <ion-card-subtitle>{{ announcement.date | date:'medium' }}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              {{ announcement.content }}
+            </ion-card-content>
+          </ion-card>
+        </ion-list>
 
         <h1 class="header">My</h1>
         <h1 class="header2">Activities</h1>

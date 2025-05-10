@@ -7,11 +7,13 @@ import { globeOutline, logoFacebook, helpCircleOutline, peopleOutline, calendarO
 import { addIcons } from 'ionicons';
 import { IonHeader, IonToolbar, IonDatetime, IonDatetimeButton, IonTitle, IonContent, IonFab, 
   IonFabButton, IonFabList, IonIcon, IonGrid, IonCol, IonRow, IonCard, IonCardHeader, IonItemOptions, IonItemOption,
-  IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonItemSliding, IonCheckbox } from '@ionic/angular/standalone';
+  IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonLabel, IonItemSliding, IonCheckbox } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { database } from '../firebase.config';
 import { ref, onValue, remove, update, query, orderByChild, equalTo } from 'firebase/database';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { FirebaseService } from '../services/firebase.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 interface Activity {
     id: string;
@@ -23,9 +25,10 @@ interface Activity {
 }
 
 interface Announcement {
+    id?: string;
     title: string;
+    content: string;
     date: string;
-    description: string;
 }
 
 @Component({
@@ -33,27 +36,35 @@ interface Announcement {
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonDatetime, IonDatetimeButton, IonTitle, IonContent, IonFab, IonFabButton, 
     IonFabList, IonIcon, ExploreContainerComponent, IonGrid, IonCol, IonRow, IonItemOptions, IonItemOption,
-    IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonItemSliding, IonCheckbox],
+    IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonList, IonItem, IonLabel, IonItemSliding, IonCheckbox],
 })
 export class Tab1Page implements OnInit, OnDestroy {
   isScrolled = false;
   cardsVisible = false;
   activities: Activity[] = [];
+  announcements: Announcement[] = [];
   private activitiesRef = ref(database, 'activities');
   private currentUserId: string | null = null;
+  private authUnsubscribe: any;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private firebaseService: FirebaseService
+  ) {
     addIcons({helpCircleOutline, logoFacebook, globeOutline, calendarOutline, listOutline, shieldCheckmarkOutline, 
       trophyOutline, peopleOutline, trash, add, notificationsOutline, megaphoneOutline, bulbOutline, 
       eyeOutline, starOutline, sparklesOutline});
+  }
 
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+  ngOnInit() {
+    this.authUnsubscribe = onAuthStateChanged(this.firebaseService.auth, (user) => {
       if (user) {
         this.currentUserId = user.uid;
         this.loadUserActivities();
+        this.loadAnnouncements();
       } else {
         this.currentUserId = null;
         this.activities = [];
@@ -61,9 +72,11 @@ export class Tab1Page implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {}
-
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    if (this.authUnsubscribe) {
+      this.authUnsubscribe();
+    }
+  }
 
   trackByFn(index: number, item: Activity): string {
     return item.id;
@@ -129,21 +142,21 @@ export class Tab1Page implements OnInit, OnDestroy {
     }
   }
 
-  announcements: Announcement[] = [
-    {
-      title: 'Registration for New School Year',
-      date: 'Deadline: June 15, 2024',
-      description: 'All students are required to complete their registration for the upcoming school year.'
-    },
-    {
-      title: 'Science Fair 2024',
-      date: 'Date: July 20-22, 2024',
-      description: 'Join us for the annual Science Fair showcasing innovative projects from our students.'
-    },
-    {
-      title: 'Final Examination Schedule',
-      date: 'March 15-20, 2024',
-      description: 'Please check the examination schedule and prepare accordingly.'
-    }
-  ];
+  loadAnnouncements() {
+    const announcementsRef = ref(this.firebaseService.database, 'announcements');
+    const announcementsQuery = query(announcementsRef, orderByChild('date'));
+
+    onValue(announcementsQuery, (snapshot) => {
+      this.announcements = [];
+      snapshot.forEach((childSnapshot) => {
+        this.announcements.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      // Sort announcements by date in descending order (newest first)
+      this.announcements.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      this.cdr.detectChanges();
+    });
+  }
 }
