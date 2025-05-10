@@ -7,30 +7,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Student Management</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label>Add New Student</ion-label>
-          <ion-button slot="end" fill="clear">Add</ion-button>
-        </ion-item>
-        <ion-item>
-          <ion-label>View All Students</ion-label>
-          <ion-button slot="end" fill="clear">View</ion-button>
-        </ion-item>
-        <ion-item>
-          <ion-label>Edit Student Information</ion-label>
-          <ion-button slot="end" fill="clear">Edit</ion-button>
-        </ion-item>
-        <ion-item>
-          <ion-label>Remove Student</ion-label>
-          <ion-button slot="end" fill="clear" color="danger">Remove</ion-button>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-searchbar
+    [(ngModel)]="searchText"
+    placeholder="Search students"
+    animated
+  ></ion-searchbar>
+
+  <ion-item>
+    <ion-label>Sort by</ion-label>
+    <ion-select [(ngModel)]="sortBy" (ionChange)="loadStudents()">
+      <ion-select-option value="lastName">Last Name</ion-select-option>
+      <ion-select-option value="firstName">First Name</ion-select-option>
+      <ion-select-option value="studentNumber">Student Number</ion-select-option>
+      <ion-select-option value="gradeSection">Grade & Section</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let student of filterStudents()">
+      <ion-label>
+        <h2>{{ student.lastName }}, {{ student.firstName }}{{ student.middleInitial ? ' ' + student.middleInitial : '' }}</h2>
+        <p>Student Number: {{ student.studentNumber }}</p>
+        <p>Grade & Section: {{ student.gradeSection }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="openViewModal(student)">
+          <ion-icon name="eye" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" (click)="openEditModal(student)">
+          <ion-icon name="create" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="danger" (click)="confirmDelete(student)">
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCreateModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content> 

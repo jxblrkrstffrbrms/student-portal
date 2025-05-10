@@ -1,36 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
     <h1 class="header">My</h1>
     <h1 class="header2">Profile</h1>
 
     <!-- Profile Card (Top) -->
     <ion-card class="profile-card">
-      <ion-item lines="none">
-        <ion-avatar slot="start">
-          <img src="assets/id.jpg" alt="Profile" />
-        </ion-avatar>
-        <ion-label>
-          <h2 class="profile-name">RAMOS</h2>
-          <p class="profile-details">Jax Blaire Kristoffer B.</p>
-          <p class="profile-details">24-03475</p>
-          <p class="profile-details">Grade 9 - Krypton</p>
-        </ion-label>
-      </ion-item>
+        <ion-item lines="none">
+            <ion-avatar slot="start">
+                <img src="assets/avatar.png" alt="Profile" />
+            </ion-avatar>
+            <ion-label>
+                <h2 class="profile-name">{{ student?.lastName }}</h2>
+                <p class="profile-details">{{ student?.firstName }} {{ student?.middleInitial }}</p>
+                <p class="profile-details">{{ student?.studentNumber }}</p>
+                <p class="profile-details">{{ student?.gradeSection }}</p>
+            </ion-label>
+        </ion-item>
     </ion-card>
 
     <!-- More Information Section -->
     <h1 class="header">More</h1>
     <h1 class="header2">Information</h1>
     <ion-list class="info-list">
-      <ion-item button detail lines="none" (click)="goTo('class-schedule')">Class Schedules</ion-item>
-      <ion-item button detail lines="none" (click)="goTo('acad-calendar')">Academic Calendar</ion-item>
-      <ion-item button detail lines="none" (click)="goTo('teacher-schedule')">Consultation Schedules</ion-item>
-      <ion-item button detail lines="none" (click)="goTo('announcement')">Announcements</ion-item>
-      <ion-item button detail lines="none" (click)="goTo('contacts')">Contact Us</ion-item>
-      <ion-item button detail lines="none" (click)="goTo('report')">Report</ion-item>
+        <ion-item button detail lines="none" (click)="goTo('class-schedule')">Class Schedules</ion-item>
+        <ion-item button detail lines="none" (click)="goTo('acad-calendar')">Academic Calendar</ion-item>
+        <ion-item button detail lines="none" (click)="goTo('teacher-schedule')">Consultation Schedules</ion-item>
+        <ion-item button detail lines="none" (click)="goTo('announcement')">Announcements</ion-item>
+        <ion-item button detail lines="none" (click)="goTo('contacts')">Contact Us</ion-item>
+        <ion-item button detail lines="none" (click)="goTo('report')">Report</ion-item>
     </ion-list>
 
     <!-- Sign Out Button -->
     <div class="signout-container">
-      <ion-button expand="block" color="danger" (click)="goTo('signout')">Sign Out</ion-button>
+        <ion-button expand="block" color="danger" (click)="goTo('signout')">Sign Out</ion-button>
     </div>
 </ion-content>

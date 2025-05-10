@@ -8,6 +8,10 @@
       ".read": true,
       ".write": true
     },
+    "students": {
+      ".read": true,
+      ".write": true
+    },
     "activities": {
       "$uid": {
         ".read": "$uid === auth.uid",

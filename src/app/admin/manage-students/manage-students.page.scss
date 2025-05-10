@@ -1,0 +1,44 @@
+ion-content {
+  --background: #f5f5f5;
+}
+
+ion-searchbar {
+  padding: 8px 0;
+  --background: transparent;
+  --box-shadow: none;
+}
+
+ion-item {
+  --background: white;
+  margin: 8px 0;
+  border-radius: 8px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 72px;
+
+  h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 0.9em;
+    color: #666;
+    margin: 2px 0;
+  }
+}
+
+ion-buttons {
+  ion-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+ion-fab-button {
+  --background: #29ABE1;
+  --background-activated: #1f8ab8;
+  --background-hover: #1f8ab8;
+} 
