@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, 
   IonSearchbar, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, 
-  IonCardContent, IonIcon } from '@ionic/angular/standalone';
+  IonCardContent, IonIcon, IonButton, AlertController } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { ref, onValue, query, orderByChild } from 'firebase/database';
-import { megaphoneOutline } from 'ionicons/icons';
+import { megaphoneOutline, eyeOutline, createOutline, trashOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
 interface Announcement {
@@ -23,19 +23,33 @@ interface Announcement {
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, 
     IonSearchbar, IonList, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, 
-    IonCardContent, IonIcon, CommonModule, FormsModule]
+    IonCardContent, IonIcon, IonButton, CommonModule, FormsModule]
 })
 export class AnnouncementPage implements OnInit {
   announcements: Announcement[] = [];
   filteredAnnouncements: Announcement[] = [];
   searchText: string = '';
 
-  constructor(private firebaseService: FirebaseService) {
-    addIcons({ megaphoneOutline });
+  constructor(
+    private firebaseService: FirebaseService,
+    private alertController: AlertController
+  ) {
+    addIcons({ megaphoneOutline, eyeOutline, createOutline, trashOutline });
   }
 
   ngOnInit() {
     this.loadAnnouncements();
+  }
+
+  async viewAnnouncement(announcement: Announcement) {
+    const alert = await this.alertController.create({
+      header: announcement.title,
+      subHeader: new Date(announcement.date).toLocaleString(),
+      message: announcement.content,
+      buttons: ['Close']
+    });
+
+    await alert.present();
   }
 
   loadAnnouncements() {

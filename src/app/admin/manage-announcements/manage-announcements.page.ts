@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { ref, push, set, remove, onValue, query, orderByChild } from 'firebase/database';
 import { AnnouncementModalComponent } from './announcement-modal.component';
 import { FirebaseService } from '../../services/firebase.service';
+import { addIcons } from 'ionicons';
+import { megaphone, eye, create, trash } from 'ionicons/icons';
 
 interface Announcement {
   id?: string;
@@ -37,7 +39,7 @@ export class ManageAnnouncementsPage implements OnInit {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private firebaseService: FirebaseService
-  ) {}
+    ) {addIcons({ megaphone, eye, create, trash });}
 
   ngOnInit() {
     this.loadAnnouncements();

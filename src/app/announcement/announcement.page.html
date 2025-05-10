@@ -26,6 +26,11 @@
       <ion-card-content>
         {{ announcement.content }}
       </ion-card-content>
+      <ion-buttons class="card-actions">
+        <ion-button fill="clear" (click)="viewAnnouncement(announcement)">
+          <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-card>
   </ion-list>
 

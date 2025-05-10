@@ -67,6 +67,24 @@ ion-searchbar {
       background: #1f8ab8;
     }
   }
+
+  .card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px;
+    border-top: 1px solid #eee;
+
+    ion-button {
+      --padding-start: 8px;
+      --padding-end: 8px;
+      margin: 0 4px;
+
+      ion-icon {
+        font-size: 20px;
+        color: #29ABE1;
+      }
+    }
+  }
 }
 
 .empty-state {
