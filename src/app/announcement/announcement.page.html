@@ -28,14 +28,14 @@
       </ion-card-content>
       <ion-buttons class="card-actions">
         <ion-button fill="clear" (click)="viewAnnouncement(announcement)">
-          <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+          <ion-icon name="eyeOutline" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-card>
   </ion-list>
 
   <div class="empty-state" *ngIf="filteredAnnouncements.length === 0">
-    <ion-icon name="megaphone-outline"></ion-icon>
+    <ion-icon name="megaphoneOutline"></ion-icon>
     <p>No announcements found</p>
   </div>
 </ion-content>
