@@ -9,10 +9,13 @@ ion-tab-button:hover{
 
 ion-tab-bar{
     box-shadow: 3px 3px 10px black;
-    border-radius: 25px 25px 0px 0px;
     height: 60px;
     width: 100%;
     align-self: center;
     background-color: white;
+}
+
+ion-tabs{
+    background-color: transparent;
 }
 

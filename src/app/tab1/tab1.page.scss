@@ -28,8 +28,9 @@
 }
 
 ion-content {
-  --background: transparent;
+  --background: white;
   position: relative;
+  border-radius: 15% 15% 0% 0%;
   z-index: 1;
 }
 
