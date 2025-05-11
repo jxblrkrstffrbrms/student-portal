@@ -1,0 +1,79 @@
+ion-content {
+  --background: #f5f5f5;
+}
+
+ion-searchbar {
+  padding: 8px 0;
+  --background: transparent;
+  --box-shadow: none;
+}
+
+.teacher-card {
+  --background: white;
+  margin: 8px 0;
+  border-radius: 8px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 72px;
+
+  h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .subject {
+    font-size: 0.9em;
+    color: #666;
+  }
+
+  .email {
+    margin: 4px 0;
+    
+    .email-link {
+      color: #29ABE1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .consultation-hours {
+    margin-top: 8px;
+    
+    h3 {
+      font-size: 0.9em;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .hours-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9em;
+      color: #666;
+      margin: 4px 0;
+    }
+  }
+}
+
+.header {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.header2 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #29ABE1;
+  margin: 0 0 16px 0;
+}

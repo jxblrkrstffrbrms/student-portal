@@ -12,6 +12,10 @@
       ".read": true,
       ".write": true
     },
+    "teachers": {
+      ".read": true,
+      ".write": true
+    },
     "activities": {
       "$uid": {
         ".read": "$uid === auth.uid",

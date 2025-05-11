@@ -1,16 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab4"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/tab4"></ion-back-button>
     </ion-buttons>
-    <ion-title>teacher-schedule</ion-title>
+    <ion-title>Consultation Hours</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">teacher-schedule</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h1 class="header">Consultation</h1>
+  <h1 class="header2">Hours</h1>
+
+  <ion-searchbar
+    [(ngModel)]="searchText"
+    placeholder="Search teachers"
+    animated
+  ></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let teacher of filterTeachers()" class="teacher-card">
+      <ion-label>
+        <h2>{{ teacher.name }}</h2>
+        <p class="subject">Subject: {{ teacher.subject }}</p>
+        <p class="email">
+          <a href="mailto:{{ teacher.email }}" class="email-link">
+            <ion-icon name="mail-outline"></ion-icon>
+            {{ teacher.email }}
+          </a>
+        </p>
+        <div class="consultation-hours">
+          <h3>Consultation Hours:</h3>
+          <div *ngFor="let hours of teacher.consultationHours" class="hours-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{ hours.day }}: {{ formatTime(hours.startTime) }} - {{ formatTime(hours.endTime) }}</span>
+          </div>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
