@@ -3,10 +3,11 @@ ion-content {
 }
 
 ion-searchbar {
-  padding: 8px 0;
-  --background: transparent;
-  --box-shadow: none;
-}
+    --background: white;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+  }
 
 .teacher-card {
   --background: white;
@@ -64,16 +65,15 @@ ion-searchbar {
   }
 }
 
-.header {
-  font-size: 2em;
-  font-weight: bold;
-  color: #333;
-  margin: 0;
+.header{
+    font-size: 18px;
+    margin-left: 5%;
+    margin-bottom: 0;
 }
 
-.header2 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #29ABE1;
-  margin: 0 0 16px 0;
+.header2{
+    font-size: 25px;
+    margin-left: 5%;
+    margin-top: 0%;
+    color: #29ABE1;
 }
