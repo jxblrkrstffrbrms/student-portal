@@ -122,142 +122,121 @@ ion-item {
     margin-bottom: 10px;
 }
 
-.info-card{
-    border-radius: 20px;
-    margin-top: 0px;
+%card-base {
+  margin: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: white;
 }
 
-.info-card-2{
-    border-radius: 20px;
-    margin-top: 0px;
-    margin-bottom: 100px;
-}
+.info-card, .info-card-2 {
+  @extend %card-base;
+  
+  ion-card-content {
+    padding: 1rem;
+    color: #444;
+    text-align: justify;
 
-.activities-card {
-    margin: 16px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.activities-card ion-list {
-    background: transparent;
-    padding: 0;
-}
-
-.activities-card ion-item {
-    --background: white;
-    margin: 8px 0;
-    border-radius: 12px;
-    --padding-start: 16px;
-    --inner-padding-end: 16px;
-}
-
-.activities-card ion-item.completed {
-    --background: #f8f8f8;
-    opacity: 0.8;
-}
-
-.activities-card ion-item.completed h2 {
-    text-decoration: line-through;
-    color: #666;
-}
-
-.activities-card ion-item h2 {
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 4px;
-}
-
-.activities-card ion-item p {
-    color: #666;
-    margin: 4px 0;
-    font-size: 0.9em;
-}
-
-.activities-card .due-date {
-    display: flex;
-    align-items: center;
-    color: #29ABE1;
-    font-size: 0.85em;
-    margin-top: 8px;
-
-    ion-icon {
-        margin-right: 4px;
-    }
-}
-
-.activities-card ion-checkbox {
-    --checkbox-background-checked: #29ABE1;
-    --border-color-checked: #29ABE1;
-    --checkmark-color: white;
-}
-
-.activities-card .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    color: #666;
-
-    ion-icon {
-        font-size: 32px;
-        margin-bottom: 12px;
-        color: #29ABE1;
+    h3 {
+      color: #29ABE1;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
     }
 
     p {
-        font-size: 1em;
-        margin: 0;
+      margin-bottom: 1rem;
     }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+
+      li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+
+        &:before {
+          content: "•";
+          color: #29ABE1;
+          position: absolute;
+          left: 0.5rem;
+        }
+      }
+    }
+  }
 }
 
-.announcement-card {
-  margin: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  ion-card-header {
-    padding: 16px;
-    
-    ion-card-title {
-      font-size: 20px;
+.info-card-2 {
+  margin-bottom: 100px;
+}
+
+.activities-card {
+  @extend %card-base;
+
+  ion-item {
+    --background: white;
+    margin: 0.5rem 0;
+    border-radius: 12px;
+
+    &.completed {
+      --background: #f8f8f8;
+      opacity: 0.8;
+    }
+
+    h2 {
       font-weight: 600;
       color: #333;
     }
-    
-    ion-card-subtitle {
-      font-size: 0.9em;
+
+    p {
       color: #666;
-      margin-top: 4px;
     }
   }
-  
+
+  .due-date {
+    color: #29ABE1;
+    display: flex;
+    align-items: center;
+
+    ion-icon {
+      margin-right: 0.5rem;
+    }
+  }
+
+  ion-checkbox {
+    --checkbox-background-checked: #29ABE1;
+    --border-color-checked: #29ABE1;
+    --checkmark-color: white;
+  }
+}
+
+.announcement-card {
+  @extend %card-base;
+
+  ion-card-header {
+    ion-card-title {
+      font-weight: 600;
+      color: #333;
+    }
+
+    ion-card-subtitle {
+      color: #666;
+    }
+  }
+
   ion-card-content {
-    padding: 16px;
-    padding-top: 0px;
     color: #444;
-    line-height: 1.5;
     max-height: 200px;
     overflow-y: auto;
-    
+
     &::-webkit-scrollbar {
       width: 6px;
     }
-    
-    &::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 3px;
-    }
-    
+
     &::-webkit-scrollbar-thumb {
       background: #29ABE1;
       border-radius: 3px;
-    }
-    
-    &::-webkit-scrollbar-thumb:hover {
-      background: #1f8ab8;
     }
   }
 }

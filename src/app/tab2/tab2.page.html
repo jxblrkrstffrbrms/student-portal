@@ -53,7 +53,7 @@
             </ion-item>
             <ion-item-options side="end">
                 <ion-item-option color="danger" (click)="deleteActivity(activity)">
-                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                    <ion-icon [icon]="trashIcon" slot="icon-only"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
         </ion-item-sliding>

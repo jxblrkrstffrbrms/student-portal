@@ -15,27 +15,47 @@
     color: #29ABE1;
 }
 
-.calendarholder{
-    width: 90%;
-    border-radius: 25px;
-    position: fixed;
-    margin-top: 22lvh;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 3px 3px 10px gray;
-}
-
-ion-datetime{
-    background-color: white;
-    padding: 2%;
-    border-radius: 25px;
-    margin-left: 3%;
-}
-
 .calendarholder {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: white;
+
+    @media (min-width: 768px) {
+        width: 80%;
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+
+    @media (min-width: 1024px) {
+        width: 70%;
+        padding: 2rem;
+    }
+}
+
+ion-datetime {
+    width: 100%;
+    background-color: white;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0 auto;
+
+    @media (min-width: 768px) {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+}
+
+ion-content {
+    --padding-top: 1rem;
+    --padding-bottom: 1rem;
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 20px;
+    min-height: 100vh;
 }
 
 ion-card {
@@ -69,6 +89,7 @@ ion-card-title {
 
 ion-list {
     margin: 20px;
+    margin-bottom: 50px;
 }
 
 ion-item {
@@ -106,9 +127,4 @@ ion-checkbox {
 
 ion-item-option {
     --background: #ff4961;
-}
-
-ion-datetime {
-    width: 100%;
-    padding: 10px;
 }

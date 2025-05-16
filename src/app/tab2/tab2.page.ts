@@ -31,6 +31,7 @@ interface Activity {
 })
 export class Tab2Page implements OnInit, OnDestroy {
     activities: Activity[] = [];
+    trashIcon = trash;
     newActivity: Activity = {
         id: '',
         title: '',
