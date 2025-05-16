@@ -1,16 +1,44 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab4"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/tab4"></ion-back-button>
     </ion-buttons>
-    <ion-title>report</ion-title>
+    <ion-title>Report Issue</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">report</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1 class="header">Report</h1>
+  <h1 class="header2">Issue</h1>
+
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="submitReport()">
+        <ion-item>
+          <ion-input 
+            [(ngModel)]="report.title" 
+            name="title"
+            label="Title" 
+            labelPlacement="floating" 
+            placeholder="Brief description of the issue">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-textarea
+            [(ngModel)]="report.description"
+            name="description"
+            label="Description"
+            labelPlacement="floating"
+            placeholder="Please provide detailed information about the issue"
+            rows="4">
+          </ion-textarea>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="!report.title || !report.description">
+          Submit Report
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

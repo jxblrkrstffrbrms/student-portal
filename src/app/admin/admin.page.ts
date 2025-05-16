@@ -7,7 +7,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardContent,
 import { Router } from '@angular/router';
 import { getAuth, signOut } from 'firebase/auth';
 import { addIcons } from 'ionicons';
-import { people, school, megaphone, logOutOutline } from 'ionicons/icons';
+import { people, school, megaphone, logOutOutline, bug } from 'ionicons/icons';
 
 @Component({
   selector: 'app-admin',
@@ -20,7 +20,7 @@ import { people, school, megaphone, logOutOutline } from 'ionicons/icons';
 })
 export class AdminPage implements OnInit {
   constructor(private router: Router) {
-    addIcons({ people, school, megaphone, logOutOutline });
+    addIcons({people,school,megaphone,bug,logOutOutline});
   }
 
   ngOnInit() {}
@@ -35,6 +35,10 @@ export class AdminPage implements OnInit {
 
   goToManageAnnouncements() {
     this.router.navigate(['/admin/manage-announcements']);
+  }
+
+  goToManageReports() {
+    this.router.navigate(['/admin/manage-reports']);
   }
 
   goTo(page: string) {

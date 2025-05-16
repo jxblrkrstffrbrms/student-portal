@@ -50,6 +50,10 @@ export const routes: Routes = [
     loadComponent: () => import('./admin/manage-announcements/manage-announcements.page').then( m => m.ManageAnnouncementsPage)
   },
   {
+    path: 'admin/manage-reports',
+    loadComponent: () => import('./admin/manage-reports/manage-reports.page').then( m => m.ManageReportsPage)
+  },
+  {
     path: 'admin/manage-activities',
     loadComponent: () => import('./admin/manage-activities/manage-activities.page').then( m => m.ManageActivitiesPage)
   },

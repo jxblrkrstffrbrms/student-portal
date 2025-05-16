@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Manage Reports</ion-title>
+    <ion-button slot="end" fill="clear" (click)="goBack()">
+        Back
+      </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="filters">
+    <ion-searchbar
+      [(ngModel)]="searchText"
+      (ionInput)="filterReports()"
+      placeholder="Search reports..."
+      animated>
+    </ion-searchbar>
+
+    <ion-item>
+      <ion-label>Status Filter</ion-label>
+      <ion-select [(ngModel)]="statusFilter" (ionChange)="filterReports()">
+        <ion-select-option value="all">All</ion-select-option>
+        <ion-select-option value="pending">Pending</ion-select-option>
+        <ion-select-option value="in-progress">In Progress</ion-select-option>
+        <ion-select-option value="resolved">Resolved</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <ion-list>
+    <ion-card *ngFor="let report of filteredReports">
+      <ion-card-header>
+        <ion-card-title>{{ report.title }}</ion-card-title>
+        <ion-card-subtitle>
+          <ion-badge [color]="getStatusColor(report.status)">{{ report.status }}</ion-badge>
+          <span class="timestamp">
+            <ion-icon name="time-outline"></ion-icon>
+            {{ report.timestamp | date:'medium' }}
+          </span>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">{{ report.description }}</p>
+        <p class="user-info">Reported by: {{ report.userName }}</p>
+        
+        <div class="actions">
+          <ion-button 
+            *ngIf="report.status !== 'in-progress'"
+            (click)="updateStatus(report, 'in-progress')"
+            color="warning">
+            <ion-icon name="time-outline" slot="start"></ion-icon>
+            Mark In Progress
+          </ion-button>
+          
+          <ion-button 
+            *ngIf="report.status !== 'resolved'"
+            (click)="updateStatus(report, 'resolved')"
+            color="success">
+            <ion-icon name="checkmark-outline" slot="start"></ion-icon>
+            Mark Resolved
+          </ion-button>
+          
+          <ion-button 
+            *ngIf="report.status !== 'pending'"
+            (click)="updateStatus(report, 'pending')"
+            color="medium">
+            <ion-icon name="close-outline" slot="start"></ion-icon>
+            Reopen
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content> 

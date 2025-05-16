@@ -1,0 +1,37 @@
+.header{
+    font-family: "Lexend", sans-serif;
+    font-size: 18px;
+    margin-left: 5%;
+    margin-bottom: 0;
+}
+
+.header2{
+    font-family: "Lexend", sans-serif;
+    font-size: 25px;
+    margin-left: 5%;
+    margin-top: 0%;
+    color: #29ABE1;
+}
+
+.email {
+    margin: 1px 0;
+    
+    .email-link {
+      color: #29ABE1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+.searchbar {
+  margin: 10px 0;
+  --background: rgba(var(--ion-color-light-rgb), 0.5);
+  --border-radius: 8px;
+  --box-shadow: none;
+}

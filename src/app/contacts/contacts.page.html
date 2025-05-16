@@ -1,16 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tab4"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/tab4"></ion-back-button>
     </ion-buttons>
-    <ion-title>contacts</ion-title>
+    <ion-title>Contact Us</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">contacts</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1 class="header">Contact</h1>
+  <h1 class="header2">Us</h1>
+
+  <ion-searchbar
+    [(ngModel)]="searchText"
+    placeholder="Search contacts..."
+    animated
+    class="searchbar">
+  </ion-searchbar>
+
+  <ion-card *ngFor="let contact of filteredContacts">
+    <ion-card-header>
+      <ion-card-title>{{ contact.title }}</ion-card-title>
+      <ion-card-subtitle>{{ contact.subtitle }}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p class="email">
+        <a [href]="'mailto:' + contact.email" class="email-link">
+          <ion-icon name="mail-outline"></ion-icon>
+          {{ contact.email }}
+        </a>
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
