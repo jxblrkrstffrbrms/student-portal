@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="filters">
+  
     <ion-searchbar
       [(ngModel)]="searchText"
       (ionInput)="filterReports()"
       placeholder="Search reports..."
       animated>
     </ion-searchbar>
-
+<div class="filters">
     <ion-item>
       <ion-label>Status Filter</ion-label>
       <ion-select [(ngModel)]="statusFilter" (ionChange)="filterReports()">
