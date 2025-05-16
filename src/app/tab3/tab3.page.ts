@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonCard, IonCardContent, IonItem, IonInput, IonSelect, 
   IonSelectOption, IonButton, IonList, IonItemSliding, IonItemOptions, 
   IonItemOption, IonIcon, IonLabel, IonCardHeader, IonCardTitle } from '@ionic/angular/standalone';
+import { FirebaseService } from '../services/firebase.service';
+import { ref, push, remove, onValue, query, orderByChild, equalTo } from 'firebase/database';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 interface Subject {
+    id?: string;
     name: string;
     grade: string;
     units: number;
+    userId: string;
 }
 
 @Component({
@@ -21,14 +26,37 @@ interface Subject {
       IonItemSliding, IonItemOptions, IonItemOption, IonIcon, IonLabel, 
       IonCardHeader, IonCardTitle]
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit, OnDestroy {
     newSubject: Subject = {
         name: '',
         grade: '',
-        units: 0
+        units: 0,
+        userId: ''
     };
 
     subjects: Subject[] = [];
+    private currentUserId: string | null = null;
+    private authUnsubscribe: any;
+
+    constructor(private firebaseService: FirebaseService) {}
+
+    ngOnInit() {
+        this.authUnsubscribe = onAuthStateChanged(this.firebaseService.auth, (user) => {
+            if (user) {
+                this.currentUserId = user.uid;
+                this.loadSubjects();
+            } else {
+                this.currentUserId = null;
+                this.subjects = [];
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.authUnsubscribe) {
+            this.authUnsubscribe();
+        }
+    }
 
     get totalUnits(): number {
         return this.subjects.reduce((sum, subject) => sum + subject.units, 0);
@@ -44,23 +72,55 @@ export class Tab3Page {
         return (this.totalGradePoints / this.totalUnits).toFixed(2);
     }
 
+    loadSubjects() {
+        if (!this.currentUserId) return;
+
+        const subjectsRef = ref(this.firebaseService.database, 'subjects');
+        const subjectsQuery = query(subjectsRef, orderByChild('userId'), equalTo(this.currentUserId));
+
+        onValue(subjectsQuery, (snapshot) => {
+            this.subjects = [];
+            snapshot.forEach((childSnapshot) => {
+                this.subjects.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+        });
+    }
+
     addSubject() {
-        if (!this.newSubject.name || !this.newSubject.grade || !this.newSubject.units) {
+        if (!this.newSubject.name || !this.newSubject.grade || !this.newSubject.units || !this.currentUserId) {
             return;
         }
 
-        this.subjects.push({...this.newSubject});
-        this.newSubject = {
-            name: '',
-            grade: '',
-            units: 0
+        const subjectsRef = ref(this.firebaseService.database, 'subjects');
+        const newSubject = {
+            ...this.newSubject,
+            userId: this.currentUserId
         };
+
+        push(subjectsRef, newSubject)
+            .then(() => {
+                this.newSubject = {
+                    name: '',
+                    grade: '',
+                    units: 0,
+                    userId: ''
+                };
+            })
+            .catch((error) => {
+                console.error('Error adding subject:', error);
+            });
     }
 
     deleteSubject(subject: Subject) {
-        const index = this.subjects.indexOf(subject);
-        if (index > -1) {
-            this.subjects.splice(index, 1);
-        }
+        if (!subject.id) return;
+
+        const subjectRef = ref(this.firebaseService.database, `subjects/${subject.id}`);
+        remove(subjectRef)
+            .catch((error) => {
+                console.error('Error deleting subject:', error);
+            });
     }
 }

@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { database } from '../firebase.config';
 import { ref, set, onValue, remove, update, query, orderByChild, equalTo } from 'firebase/database';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { trash } from 'ionicons/icons';
+
 
 interface Activity {
     id: string;
@@ -58,7 +60,7 @@ export class Tab2Page implements OnInit, OnDestroy {
                 this.activities = [];
                 console.log('No user, clearing activities');
             }
-        });
+        })
     }
 
     ngOnInit() {
